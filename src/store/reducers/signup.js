@@ -41,6 +41,7 @@ const setRedirectPath = (state, action) => {
     };
 };
 
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SIGNUP_START:

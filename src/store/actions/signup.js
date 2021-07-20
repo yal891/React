@@ -29,13 +29,13 @@ export const setAuthRedirectPath = (path) => {
     };
 };
 
-export const signup = (username, password,  formIsValid) => {
+export const signup = (username, password, formIsValid) => {
     return dispatch => {
         dispatch(start());
         const user = {
                 username: username,
                 password: password,
-                role: ["User"] // "User"
+                role: ["User"] // "User" or "Admin"
             },
             url = "http://localhost:8080/register"; //backend api
 

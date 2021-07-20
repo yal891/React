@@ -6,13 +6,12 @@ const initialState = {
     error: null,
     loading: false,
     success: false,
-    authorized: false,
+
 };
 
 const start = (state, action) => {
-    return  updateObject(state,{
+    return updateObject(state,{
         loading: true,
-        authorized: false,
         success: false,
         error: null
 })
@@ -21,33 +20,31 @@ const start = (state, action) => {
 };
 
 const success = (state, action) => {
-    return  updateObject(state,{
+    return updateObject(state,{
         loading: false,
         success: true,
-        authorized: true,
         token: action.token
     })
 }
 
 const fail = (state, action) => {
-    return  updateObject(state,{
+    return updateObject(state,{
         loading: false,
         success: false,
-        authorized: false,
         error: action.error
     })
 
 };
 
 const logout = (state, action) => {
-    return  updateObject(state,{
+    return updateObject(state,{
         loading: false,
         success: false,
-        authorized: false,
         token: null
     })
 };
 
+// return based on the action type
 const reducer = (state = initialState, action) =>{
     switch (action.type) {
         case actionTypes.AUTH_START:
