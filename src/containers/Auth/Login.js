@@ -1,4 +1,3 @@
-import * as actions from '../../store/actions/index'
 import React, { Component } from "react";
 import './Login.css';
 

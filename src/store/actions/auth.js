@@ -63,23 +63,9 @@ export const login = (username, password) => {
             .catch(error => {
                 console.log(error);
                 dispatch(fail("Wrong Username or Password."));
+                //dispatch(fail(error.response.data.error));
             });
     };
 };
 
-export const authCheckState = () => {
-    return dispatch => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            dispatch(logout());
-        } else {
-            const expirationDate = new Date(localStorage.getItem('expirationDate'));
-            if (expirationDate <= new Date()) {
-                dispatch(logout());
-            } else {
-                dispatch(success(token));
-                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
-            }
-        }
-    };
-};
+
