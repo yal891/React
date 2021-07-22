@@ -8,7 +8,7 @@ import './Login.css';
 class Login extends Component{
     //form validation
     state = {
-        loginForm: {
+        loginForm: { //name convention match to backend
             userName: {
                 elementType: 'input',
                 elementConfig: {

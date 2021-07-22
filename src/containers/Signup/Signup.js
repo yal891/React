@@ -144,7 +144,7 @@ const mapStateToProps = state => {
         isAuthenticated: (state.auth.token != null),
         authRedirectPath: state.signup.authRedirectPath,
         //authRedirectPath: state.auth.authRedirectPath,
-        //token: state.auth.token
+        //token: state.auth.token?
     };
 };
 

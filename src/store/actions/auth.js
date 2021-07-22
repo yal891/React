@@ -64,6 +64,7 @@ export const login = (username, password, formIsValid) => {
                 console.log(error);
                 dispatch(fail("Wrong Username or Password."));
                 //dispatch(fail(error.response.data.error));
+                //alert function?
             });
     };
 };

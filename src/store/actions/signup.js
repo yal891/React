@@ -1,6 +1,5 @@
 import axios from 'axios';
 import * as actionTypes from "./actionTypes";
-import { Alert } from 'bootstrap';
 
 export const start = () => {
     return {
