@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
 
 //import redux features
 import { createStore, applyMiddleware, combineReducers } from "redux";
@@ -24,15 +26,17 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById("root")
+const app = (
+    <Provider store = {store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 
+ReactDOM.render(app , document.getElementById('root'))
 registerServiceWorker();

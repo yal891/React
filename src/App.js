@@ -1,21 +1,43 @@
-import React from "react";
+import React, { Component } from 'react';
 import { BrowserRouter } from "react-router-dom";
-import Auth from "./containers/Auth/Auth";
+import Login from "./containers/Auth/Login";
+import Signup from "./containers/Signup/Signup"
 import './App.css';
 
-function App() {
-  return (
-      //for test running only
-    <div className="App">
-      <header className="App-header">
-        hello
-      </header>
-    </div>
+import {Route, Switch, Redirect,  withRouter} from 'react-router-dom'
+import { connect } from 'react-redux';
+import './App.css';
 
-    // <BrowserRouter>
-    //     <Auth className="frontend" />
-    // </BrowserRouter>
-  );
+class App extends Component {
+    componentDidMount () {
+
+        // console.log(this.props);
+        // this.props.onTryAutoSignup();
+
+    }
+    render () {
+        let routes = (
+            <Switch>
+                <Route path = "/authenticate"  component = {Login} />
+                <Route exact path = "/register"  component = {Signup} />
+                <Redirect to="/" />
+            </Switch>
+        );
+
+        return (
+            <BrowserRouter>
+                <div className="App">
+                </div>
+                {routes}
+            </BrowserRouter>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    };
+};
+
+export default withRouter( connect(  mapStateToProps, null )( App ) );

@@ -47,11 +47,11 @@ export const setAuthRedirectPath = (path) => {
 };
 
 // login action
-export const login = (username, password) => {
+export const login = (username, password, formIsValid) => {
     return dispatch => {
         dispatch(start());
         const user = {
-                username: username,
+                userName: username,
                 password: password
             },
             url = 'http://localhost:8080/authenticate'; // backend url
@@ -69,3 +69,19 @@ export const login = (username, password) => {
 };
 
 
+export const authCheckState = () => {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(logout());
+        } else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            if (expirationDate <= new Date()) {
+                dispatch(logout());
+            } else {
+                dispatch(success(token));
+                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
+            }
+        }
+    };
+};

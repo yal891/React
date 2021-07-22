@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as actionTypes from "./actionTypes";
+import { Alert } from 'bootstrap';
 
 export const start = () => {
     return {
@@ -33,21 +34,23 @@ export const signup = (username, password, formIsValid) => {
     return dispatch => {
         dispatch(start());
         const user = {
-                username: username,
+                userName: username,
                 password: password,
-                role: ["User"] // "User" or "Admin"
+                role: "User", // "User" or "Admin"
             },
             url = "http://localhost:8080/register"; //backend api
 
         axios.post(url, user)
             .then(response => {
                 console.log(response);
+                // Alert("You are successfully sign up. Go ahead!")
                 dispatch(success());
 
             })
             .catch(error => {
                 console.log(error);
                 dispatch(fail(error.response.data.error));
+                // Alert("The username has been taken!")
             });
     };
 };
