@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import Login from "./containers/Auth/Login";
 import Signup from "./containers/Signup/Signup"
+import Resource from "./containers/Resource/Resource"
 import './App.css';
 
 import {Route, Switch, Redirect,  withRouter} from 'react-router-dom'
@@ -16,13 +17,25 @@ class App extends Component {
 
     }
     render () {
+
         let routes = (
             <Switch>
                 <Route path = "/authenticate"  component = {Login} />
                 <Route exact path = "/register"  component = {Signup} />
-                <Redirect to="/" />
+                <Route exact path="/resource/read" component={Resource} />
+                <Redirect to="/hi" />
             </Switch>
         );
+
+
+        if(this.props.isAuthenticated) {
+            routes = (
+                <Switch>
+                    <Route exact path="/resource/read" component={Resource} />
+                    <Redirect to="/hi" />
+                </Switch>
+            )
+        }
 
         return (
             <BrowserRouter>

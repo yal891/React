@@ -12,7 +12,7 @@ class Login extends Component{
             userName: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'username', //'text'
+                    type: 'userName', //'text'
                     placeholder: 'username'
                 },
                 value: '',
@@ -125,7 +125,11 @@ class Login extends Component{
                 <h1 className = "head">login</h1>
                 <form className = "body" onSubmit={this.submitHandler}>
                     {form}
-                    <button type="submit" className="btn btn-warning b1" disabled = {!this.state.formIsValid}>Login/Submit</button>
+                    <button type="submit" className="btn btn-warning b1" disabled = {!this.state.formIsValid}>
+                        <NavLink to = "/resource/read" exact activeStyle={{
+                            fontWeight: 'bold',
+                        }}> Login/Submit</NavLink>
+                    </button>
                 </form>
                 {/*Signup*/}
                 <div className ="signup">

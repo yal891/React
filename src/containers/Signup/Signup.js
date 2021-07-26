@@ -13,7 +13,7 @@ class Signup extends Component{
             userName: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'username', //'text'
+                    type: 'userName', //'text'
                     placeholder: 'username'
                 },
                 value: '',
