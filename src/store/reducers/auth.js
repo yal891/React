@@ -19,11 +19,13 @@ const start = (state, action) => {
 
 };
 
+//authSuccess
 const success = (state, action) => {
     return updateObject(state,{
         loading: false,
         success: true,
-        token: action.token
+        token: action.token, //action.idToken,
+        error: null,
     })
 }
 

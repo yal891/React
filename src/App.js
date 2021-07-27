@@ -32,7 +32,7 @@ class App extends Component {
         if(this.props.isAuthenticated) {
             routes = (
                 <Switch>
-                    {/*<Route exact path="/resource/read" component={Resource} />*/}
+                    <Route exact path="/resource/read" component={Resource} />
                     <Redirect to="/hi" />
                 </Switch>
             )

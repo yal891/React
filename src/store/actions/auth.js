@@ -46,27 +46,29 @@ export const setAuthRedirectPath = (path) => {
     };
 };
 
-// login action
+// login action (auth)
 export const login = (username, password, formIsValid) => {
     return dispatch => {
         dispatch(start());
         const user = {
                 userName: username,
                 password: password,
+                returnSecureToken: true,
                 // role: "User",
             },
             url = 'http://localhost:8080/authenticate'; // backend url
         axios.post(url, user)
             .then(response => {
                 console.log(response.data);
-                localStorage.setItem("token", response.data);
-                console.log(localStorage.setItem("token", "22"));
+                localStorage.setItem("token", response.data.token);
+                // console.log(localStorage.setItem("token", "22"));
                 dispatch(success(response.data.token)); //userId
             })
             .catch(error => {
                 console.log(error);
                 dispatch(fail("Wrong Username or Password."));
                 //dispatch(fail(error.response.data.error));
+
             });
     };
 };

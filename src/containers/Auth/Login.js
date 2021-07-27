@@ -96,7 +96,7 @@ class Login extends Component{
         }
 
         let form = formElementsArray.map(formElement => (
-            <Input className= "inputForm"
+            <Input
                    key={formElement.id}
                    elementType={formElement.config.elementType}
                    elementConfig={formElement.config.elementConfig}
@@ -129,6 +129,7 @@ class Login extends Component{
                         <NavLink to = "/resource/read" exact activeStyle={{
                             fontWeight: 'bold',
                         }}> Login/Submit</NavLink>
+                        {/*Login/Submit*/}
                     </button>
                 </form>
                 {/*Signup*/}

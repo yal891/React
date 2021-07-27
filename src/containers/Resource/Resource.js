@@ -5,6 +5,7 @@ import { BootstrapTable, TableHeaderColumn, InsertButton, DeleteButton } from 'r
 import cellEditFactory from "react-bootstrap-table2-editor";
 
 import ReactDOM from "react-dom";
+import "./csv.css";
 import CSVReader from "react-csv-reader";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,45 +17,8 @@ const resources = [
     { id: 1, name: "Sports", code: 123456 },
     { id: 2, name: "Music", code: 123456 },
     { id: 3, name: "Transportation", code: 123456 },
-    { id: 4, name: "Camera", code: 8167404 },
-
+    { id: 4, name: "Camera", code: 123456 },
 ];
-
-const columns = [
-    {
-        dataField: "id",
-        text: "Resource ID",
-        sort: true
-    },
-    {
-        dataField: "name",
-        text: "Resource Name",
-        sort: true
-    },
-    {
-        dataField: "code",
-        text: "Resource Code",
-        sort: true,
-        validator: (newValue, row, column) => {
-            if (isNaN(newValue)) {
-                return {
-                    valid: false,
-                    message: "Resource code should be numeric"
-                };
-            }
-            return true;
-        }
-    }
-];
-
-const defaultSorted = [
-    {
-        dataField: "name",
-        order: "desc"
-    }
-];
-
-
 
 export default class Resource extends React.Component {
     createCustomInsertButton = (openModal) => {
@@ -115,7 +79,6 @@ export default class Resource extends React.Component {
                 <TableHeaderColumn dataField='id' dataSort={true} isKey={true} >ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='name' dataSort={true} filter={{ type: 'TextFilter' }}>Resource Name</TableHeaderColumn>
                 <TableHeaderColumn dataField='code' >Resource code</TableHeaderColumn>
-
             </BootstrapTable>
                 </div>
             </div>
@@ -123,7 +86,39 @@ export default class Resource extends React.Component {
 
     }
 }
-
+// const columns = [
+//     {
+//         dataField: "id",
+//         text: "Resource ID",
+//         sort: true
+//     },
+//     {
+//         dataField: "name",
+//         text: "Resource Name",
+//         sort: true
+//     },
+//     {
+//         dataField: "code",
+//         text: "Resource Code",
+//         sort: true,
+//         validator: (newValue, row, column) => {
+//             if (isNaN(newValue)) {
+//                 return {
+//                     valid: false,
+//                     message: "Resource code should be numeric"
+//                 };
+//             }
+//             return true;
+//         }
+//     }
+// ];
+//
+// const defaultSorted = [
+//     {
+//         dataField: "name",
+//         order: "desc"
+//     }
+// ];
 
 // <div className = "App">
 //     <h1>Resource Page</h1>
