@@ -42,14 +42,11 @@ export const signup = (username, password, formIsValid) => {
         axios.post(url, user)
             .then(response => {
                 console.log(response);
-                // Alert("You are successfully sign up. Go ahead!")
                 dispatch(success());
-
             })
             .catch(error => {
                 console.log(error);
                 dispatch(fail(error.response.data.error));
-                // Alert("The username has been taken!")
             });
     };
 };

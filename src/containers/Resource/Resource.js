@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-
 import { BootstrapTable, TableHeaderColumn, InsertButton, DeleteButton } from 'react-bootstrap-table';
 // import BootstrapTable from "react-bootstrap-table-next";
 // import {TableHeaderColumn, InsertButton, DeleteButton } from 'react-bootstrap-table-next';
 import cellEditFactory from "react-bootstrap-table2-editor";
+
+import ReactDOM from "react-dom";
+import CSVReader from "react-csv-reader";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css"
@@ -57,46 +59,58 @@ const defaultSorted = [
 export default class Resource extends React.Component {
     createCustomInsertButton = (openModal) => {
         return (
-            <button style={ { color: 'red' } } onClick={ openModal }>Add rows</button>
+            <button style={ { color: 'saddlebrown' } } onClick={ openModal }>Add rows</button>
         );
     }
 
-    createCustomDeleteButton = (onClick) => {
+    createCustomDeleteButton = (onBtnClick) => {
         return (
-            <button style={ { color: 'red' } } onClick={onClick}>Delete Rows</button>
+            <button style={ { color: 'brown' } } onClick={onBtnClick}>Delete Rows</button>
+        );
+    }
+
+    createCustomExportCSVButton = (onClick) => {
+        return (
+            <button style={ { color: 'rosybrown' } } onClick={ onClick }>Export CSV</button>
         );
     }
 
     render() {
         const options = {
             insertBtn: this.createCustomInsertButton,
-            deleteBtn: this.createCustomDeleteButton
+            deleteBtn: this.createCustomDeleteButton,
+            exportCSVBtn: this.createCustomExportCSVButton
+        };
+
+        const selectRow = {
+            mode: 'checkbox',
+            // clickToSelect: false
         };
 
         const cellEditProp = {
             mode: 'dbclick'
         };
+
+        const handleForce = (data, fileInfo) => console.log(data, fileInfo);
+
+        const papaparseOptions = {
+            header: true,
+            dynamicTyping: true,
+            skipEmptyLines: true,
+            transformHeader: header => header.toLowerCase().replace(/\W/g, "_")
+        };
+
         return (
-            // <div className = "App">
-            //     <h1>Resource Page</h1>
-            //     <div className="container">
-            // <BootstrapTable
-            //     bootstrap4
-            //     keyField="id"
-            //     data={resources}
-            //     columns={columns}
-            //     defaultSorted={defaultSorted}
-            //     cellEdit={cellEditFactory({
-            //         mode: "click",
-            //         blurToSave: true
-            //     })}
-            // />
-            // </div>
-            // </div>
             <div className = "App">
                 <h1>Resource Page</h1>
                 <div className="container">
-            <BootstrapTable data={resources} options={options} insertRow deleteRow cellEdit={cellEditProp}
+                    <CSVReader
+                        cssClass="react-csv-input"
+                        label="Import CSV Here"
+                        onFileLoaded={handleForce}
+                        parserOptions={papaparseOptions}
+                    />
+            <BootstrapTable data={resources} options={options} insertRow deleteRow selectRow={ selectRow } cellEdit={cellEditProp} exportCSV
             >
                 <TableHeaderColumn dataField='id' dataSort={true} isKey={true} >ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='name' dataSort={true} filter={{ type: 'TextFilter' }}>Resource Name</TableHeaderColumn>
@@ -109,3 +123,21 @@ export default class Resource extends React.Component {
 
     }
 }
+
+
+// <div className = "App">
+//     <h1>Resource Page</h1>
+//     <div className="container">
+// <BootstrapTable
+//     bootstrap4
+//     keyField="id"
+//     data={resources}
+//     columns={columns}
+//     defaultSorted={defaultSorted}
+//     cellEdit={cellEditFactory({
+//         mode: "click",
+//         blurToSave: true
+//     })}
+// />
+// </div>
+// </div>

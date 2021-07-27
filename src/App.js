@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from "react-router-dom";
+import Sidebar from './components/Sidebar/Sidebar'
 import Login from "./containers/Auth/Login";
 import Signup from "./containers/Signup/Signup"
 import Resource from "./containers/Resource/Resource"
@@ -31,7 +32,7 @@ class App extends Component {
         if(this.props.isAuthenticated) {
             routes = (
                 <Switch>
-                    <Route exact path="/resource/read" component={Resource} />
+                    {/*<Route exact path="/resource/read" component={Resource} />*/}
                     <Redirect to="/hi" />
                 </Switch>
             )
@@ -40,6 +41,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div className="App">
+                    <Sidebar />
                 </div>
                 {routes}
             </BrowserRouter>

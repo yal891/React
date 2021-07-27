@@ -1,0 +1,37 @@
+.sidebar {
+    background:black;
+    height: 100vh;
+    width: 218px;
+    top: 100%;
+    left: -10%;
+    position: absolute;
+    visibility: hidden;
+    transition: all 0.3s ease-in;
+    transform: translateX(-50%);
+    z-index:10000;
+}
+.sidebar .sidebarLinks {
+    color:white;
+    display: block;
+    padding: 1px;
+    text-align: left;
+    padding-left: 20px;
+}
+.sidebar .sidebarNav .sidebarLayer {
+    width: 300px;
+    background:black;
+    height: 35px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    visibility: visible;
+}
+
+.active {
+    visibility: visible;
+    transition: all 0.3s ease-in;
+    transform: translateX(0);
+    left: 0;
+}
