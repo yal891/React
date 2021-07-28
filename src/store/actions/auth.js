@@ -61,7 +61,6 @@ export const login = (username, password, formIsValid) => {
             .then(response => {
                 console.log(response.data);
                 localStorage.setItem("token", response.data.token);
-                // console.log(localStorage.setItem("token", "22"));
                 dispatch(success(response.data.token)); //userId
             })
             .catch(error => {

@@ -15,9 +15,9 @@ import "./Resource.css";
 //By default
 const resources = [
     { id: 1, name: "Sports", code: 123456 },
-    { id: 2, name: "Music", code: 123456 },
-    { id: 3, name: "Transportation", code: 123456 },
-    { id: 4, name: "Camera", code: 123456 },
+    { id: 2, name: "Music", code: 107848 },
+    { id: 3, name: "Transportation", code: 912564 },
+    { id: 4, name: "Camera", code: 487741 },
 ];
 
 export default class Resource extends React.Component {
@@ -35,7 +35,7 @@ export default class Resource extends React.Component {
 
     createCustomExportCSVButton = (onClick) => {
         return (
-            <button style={ { color: 'rosybrown' } } onClick={ onClick }>Export CSV</button>
+            <button style={ { color: 'red' } } onClick={ onClick }>Export CSV</button>
         );
     }
 
